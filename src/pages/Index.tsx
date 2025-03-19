@@ -4,7 +4,7 @@ import { ProductAd } from "../components/RemotionVideo/ProductAd";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#121212] p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] p-4">
       <div className="max-w-4xl w-full">
         <h1 className="text-3xl font-bold text-white mb-6 text-center">
           <span className="text-sm uppercase tracking-wider bg-[#6e9fff] text-white px-2 py-1 rounded-full mb-2 inline-block">Premium</span>
@@ -12,7 +12,7 @@ const Index = () => {
           Product Advertisement
         </h1>
         
-        <div className="rounded-xl overflow-hidden shadow-2xl bg-[#1a1a1a] border border-[#333]">
+        <div className="rounded-xl overflow-hidden shadow-2xl bg-[#121214] border border-[#222]">
           <Player
             component={ProductAd}
             durationInFrames={300}
@@ -29,7 +29,7 @@ const Index = () => {
           />
         </div>
         
-        <p className="text-[#999] mt-6 text-center">
+        <p className="text-[#888] mt-6 text-center">
           Created with Remotion • Premium design inspired by minimalist principles
         </p>
       </div>

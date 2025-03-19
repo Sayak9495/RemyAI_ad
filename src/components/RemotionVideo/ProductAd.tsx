@@ -7,12 +7,12 @@ import { SubtitleText } from './SubtitleText';
 export const ProductAd = () => {
   const frame = useCurrentFrame();
   
-  // Dark theme background color
-  const backgroundColor = `#0a0a0a`;
+  // Enhanced dark theme background with subtle gradient
+  const backgroundColor = `linear-gradient(160deg, #121214 0%, #0a0a10 100%)`;
 
   return (
     <AbsoluteFill style={{ 
-      backgroundColor, 
+      background: backgroundColor, 
       display: 'flex', 
       justifyContent: 'center', 
       alignItems: 'center',
@@ -35,14 +35,16 @@ export const ProductAd = () => {
           text="with twitterAI" 
           position="top"
           isHeading={true}
+          delay={5} // Small delay
         />
       </Sequence>
 
-      {/* Bottom subtitle - appears later */}
+      {/* Bottom subtitle - appears later with more delay */}
       <Sequence from={195}>
         <SubtitleText 
           text="your manager who knows what you want to code" 
-          position="bottom" 
+          position="bottom"
+          delay={15} // Additional delay for staggered effect
         />
       </Sequence>
     </AbsoluteFill>
