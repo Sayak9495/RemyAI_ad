@@ -29,15 +29,16 @@ export const ProductAd = () => {
         <ProductReveal />
       </Sequence>
 
-      {/* Top subtitle */}
-      <Sequence from={180}>
+      {/* Top subtitle - appears earlier with heading style */}
+      <Sequence from={165}>
         <SubtitleText 
           text="with twitterAI" 
-          position="top" 
+          position="top"
+          isHeading={true}
         />
       </Sequence>
 
-      {/* Bottom subtitle */}
+      {/* Bottom subtitle - appears later */}
       <Sequence from={195}>
         <SubtitleText 
           text="your manager who knows what you want to code" 

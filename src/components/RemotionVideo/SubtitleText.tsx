@@ -4,9 +4,10 @@ import { spring, useCurrentFrame, interpolate } from 'remotion';
 interface SubtitleTextProps {
   text: string;
   position: 'top' | 'bottom';
+  isHeading?: boolean;
 }
 
-export const SubtitleText = ({ text, position }: SubtitleTextProps) => {
+export const SubtitleText = ({ text, position, isHeading = false }: SubtitleTextProps) => {
   const frame = useCurrentFrame();
   
   const fadeSpring = spring({
@@ -18,9 +19,10 @@ export const SubtitleText = ({ text, position }: SubtitleTextProps) => {
   const opacity = interpolate(fadeSpring, [0, 1], [0, 1]);
   const xOffset = interpolate(fadeSpring, [0, 1], [20, 0]);
   
+  // Position higher above the product or lower below the product
   const positionStyles = position === 'top' 
-    ? { top: '15%' } 
-    : { bottom: '15%' };
+    ? { top: '5%' } 
+    : { bottom: '5%' };
 
   return (
     <div style={{ 
@@ -30,15 +32,16 @@ export const SubtitleText = ({ text, position }: SubtitleTextProps) => {
       ...positionStyles,
       opacity,
       transform: `translateX(${xOffset}px)`,
+      zIndex: 20, // Ensure text is above other elements
     }}>
       <p style={{
-        fontSize: '2.5rem', // Larger text
-        fontWeight: 700, // Bold text
-        color: '#ffffff', // White text for dark theme
+        fontSize: isHeading ? '3.5rem' : '2.5rem',
+        fontWeight: 700,
+        color: '#ffffff',
         margin: 0,
         letterSpacing: '-0.02em',
-        textShadow: '0 0 10px rgba(110, 159, 255, 0.4)', // Premium glow effect
-        textTransform: 'uppercase', // Uppercase for more premium feel
+        textShadow: '0 0 10px rgba(110, 159, 255, 0.6)',
+        textTransform: 'uppercase',
       }}>
         {text}
       </p>
