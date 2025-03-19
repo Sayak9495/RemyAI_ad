@@ -42,6 +42,46 @@ export const SubtitleText = ({
     ? '4.2rem'  // Larger heading
     : '2.8rem'; // Larger subtitle
 
+  // Add gradient color for top heading ("with twitterAI")
+  const textStyle = {
+    fontSize,
+    fontWeight: 800,
+    margin: 0,
+    letterSpacing: '-0.02em',
+    textShadow: '0 0 15px rgba(110, 159, 255, 0.7), 0 0 30px rgba(0, 0, 0, 0.3)',
+    textTransform: 'uppercase',
+    lineHeight: 1.1,
+    fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif',
+  };
+
+  // Special styling for "with twitterAI" text
+  if (position === 'top' && isHeading) {
+    return (
+      <div style={{ 
+        position: 'absolute',
+        width: '100%',
+        textAlign: 'center',
+        ...positionStyles,
+        opacity,
+        transform: `translateX(${xOffset}px) translateY(${yOffset}px)`,
+        zIndex: 30, // Ensure text is above all other elements
+      }}>
+        <p style={{
+          ...textStyle,
+          // Gradient text color for the top heading
+          background: 'linear-gradient(to right, #6e9fff, #9e72ff)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          color: 'transparent', // Fallback
+        }}>
+          {text}
+        </p>
+      </div>
+    );
+  }
+
+  // Standard white text for other subtitle text
   return (
     <div style={{ 
       position: 'absolute',
@@ -53,15 +93,8 @@ export const SubtitleText = ({
       zIndex: 30, // Ensure text is above all other elements
     }}>
       <p style={{
-        fontSize,
-        fontWeight: 800,
-        color: '#ffffff',
-        margin: 0,
-        letterSpacing: '-0.02em',
-        textShadow: '0 0 15px rgba(110, 159, 255, 0.7), 0 0 30px rgba(0, 0, 0, 0.3)',
-        textTransform: 'uppercase',
-        lineHeight: 1.1,
-        fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif',
+        ...textStyle,
+        color: '#ffffff', // Standard white for bottom text
       }}>
         {text}
       </p>
