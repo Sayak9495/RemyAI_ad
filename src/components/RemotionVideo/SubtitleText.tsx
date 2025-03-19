@@ -32,11 +32,13 @@ export const SubtitleText = ({ text, position }: SubtitleTextProps) => {
       transform: `translateX(${xOffset}px)`,
     }}>
       <p style={{
-        fontSize: '2rem',
-        fontWeight: 500,
-        color: '#1d1d1f',
+        fontSize: '2.5rem', // Larger text
+        fontWeight: 700, // Bold text
+        color: '#ffffff', // White text for dark theme
         margin: 0,
         letterSpacing: '-0.02em',
+        textShadow: '0 0 10px rgba(110, 159, 255, 0.4)', // Premium glow effect
+        textTransform: 'uppercase', // Uppercase for more premium feel
       }}>
         {text}
       </p>

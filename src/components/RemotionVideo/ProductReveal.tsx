@@ -36,7 +36,7 @@ export const ProductReveal = () => {
   const shadowOpacity = interpolate(
     frame,
     [15, 30, 45],
-    [0, 0.3, 0.2],
+    [0, 0.5, 0.4],
     {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
@@ -46,7 +46,18 @@ export const ProductReveal = () => {
   const shadowSize = interpolate(
     bounceScale,
     [0, 0.5, 1],
-    [20, 50, 40],
+    [20, 60, 50],
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    }
+  );
+
+  // Glow effect on product entry
+  const glowOpacity = interpolate(
+    frame,
+    [15, 45, 75],
+    [0, 0.8, 0.3],
     {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
@@ -65,29 +76,37 @@ export const ProductReveal = () => {
       {/* Shadow */}
       <div style={{
         position: 'absolute',
-        width: '300px',
-        height: '30px',
+        width: '400px', // Larger shadow
+        height: '40px',
         borderRadius: '50%',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        filter: `blur(${shadowSize / 2}px)`,
+        backgroundColor: 'rgba(110, 159, 255, 0.5)', // Blue shadow for premium feel
+        filter: `blur(${shadowSize}px)`,
         opacity: shadowOpacity,
-        transform: `translateY(320px) scale(${productScale})`,
+        transform: `translateY(380px) scale(${productScale})`,
+      }} />
+      
+      {/* Glow effect */}
+      <div style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        background: 'radial-gradient(circle, rgba(110, 159, 255, 0.2) 0%, rgba(10, 10, 10, 0) 70%)',
+        opacity: glowOpacity,
       }} />
       
       {/* Product image */}
       <div style={{
         transform: `translateY(${productY}px) scale(${productScale})`,
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)',
-        borderRadius: '36px',
+        boxShadow: '0 25px 50px -12px rgba(110, 159, 255, 0.3)',
         overflow: 'hidden',
-        width: '300px',
-        height: '600px',
-        border: '10px solid #1d1d1f',
-        backgroundColor: '#f5f5f7',
+        width: '380px', // Larger product image
+        height: '750px', // Larger product image
+        borderRadius: '36px',
+        position: 'relative',
       }}>
         <img 
-          src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
-          alt="Product Screenshot" 
+          src="/lovable-uploads/7315d2b0-d74b-4d57-bb8c-12c1d1017094.png" 
+          alt="iPhone Pro" 
           style={{
             width: '100%',
             height: '100%',

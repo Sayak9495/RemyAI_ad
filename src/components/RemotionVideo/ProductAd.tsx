@@ -7,8 +7,8 @@ import { SubtitleText } from './SubtitleText';
 export const ProductAd = () => {
   const frame = useCurrentFrame();
   
-  // Background color animation
-  const backgroundColor = `rgb(249, 249, 249)`;
+  // Dark theme background color
+  const backgroundColor = `#0a0a0a`;
 
   return (
     <AbsoluteFill style={{ 
