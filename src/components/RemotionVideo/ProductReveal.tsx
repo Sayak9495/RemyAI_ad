@@ -1,5 +1,5 @@
 
-import { useCurrentFrame, spring, interpolate } from 'remotion';
+import { useCurrentFrame, spring, interpolate, staticFile } from 'remotion';
 
 export const ProductReveal = () => {
   const frame = useCurrentFrame();
@@ -111,7 +111,7 @@ export const ProductReveal = () => {
         zIndex: 15,
       }}>
         <img 
-          src="/lovable-uploads/7315d2b0-d74b-4d57-bb8c-12c1d1017094.png" 
+          src={staticFile('samosaa.png')}
           alt="iPhone Pro" 
           style={{
             width: '100%',

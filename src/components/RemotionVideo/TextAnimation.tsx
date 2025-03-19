@@ -77,7 +77,7 @@ export const TextAnimation = () => {
         color: '#ffffff', // White text for dark theme
         textShadow: '0 0 15px rgba(255, 255, 255, 0.3)', // Premium glow effect
       }}>
-        Order Pens,
+        Order Food,
       </h1>
       
       <div style={{ 

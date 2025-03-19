@@ -32,19 +32,19 @@ export const ProductAd = () => {
       {/* Top subtitle - appears earlier with heading style */}
       <Sequence from={165}>
         <SubtitleText 
-          text="with twitterAI" 
+          text="with samosaa.ai" 
           position="top"
           isHeading={true}
-          delay={5} // Small delay
+          delay={3} // Small delay
         />
       </Sequence>
 
       {/* Bottom subtitle - appears later with more delay */}
       <Sequence from={195}>
         <SubtitleText 
-          text="your manager who knows what you want to code" 
+          text="your friend who knows what you want" 
           position="bottom"
-          delay={15} // Additional delay for staggered effect
+          delay={20} // Additional delay for staggered effect
         />
       </Sequence>
     </AbsoluteFill>
