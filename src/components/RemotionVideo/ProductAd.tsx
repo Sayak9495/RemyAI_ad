@@ -1,51 +1,31 @@
-
-import { AbsoluteFill, interpolate, useCurrentFrame, spring, Sequence } from 'remotion';
+import { AbsoluteFill, Sequence, Audio, staticFile } from 'remotion';
 import { TextAnimation } from './TextAnimation';
 import { ProductReveal } from './ProductReveal';
-import { SubtitleText } from './SubtitleText';
+import { Frame5 } from './Frame5';
+import { Frame6 } from './Frame6';
 
 export const ProductAd = () => {
-  const frame = useCurrentFrame();
-  
-  // Enhanced dark theme background with subtle gradient
-  const backgroundColor = `linear-gradient(160deg, #121214 0%, #0a0a10 100%)`;
-
   return (
-    <AbsoluteFill style={{ 
-      background: backgroundColor, 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center',
-      fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif',
-      overflow: 'hidden',
-    }}>
-      {/* First 5 seconds: Headline animation */}
-      <Sequence from={0} durationInFrames={150}>
+    <AbsoluteFill>
+      <Audio src={staticFile('The_Walking_Cat.mp3')} />
+      {/* Frame 1-3: Order Food, Faster, Smarter (0-96 frames, 3.2 seconds) */}
+      <Sequence from={0} durationInFrames={96}>
         <TextAnimation />
       </Sequence>
-
-      {/* Second 5 seconds: Product reveal and subtitles */}
-      <Sequence from={135}>
+      
+      {/* Frame 4: Product drop with Samosaa.ai (96-143 frames, 1.5 seconds + 1.2 seconds = 2.7 seconds) */}
+      <Sequence from={96} durationInFrames={67}>
         <ProductReveal />
       </Sequence>
-
-      {/* Top subtitle - appears earlier with heading style */}
-      <Sequence from={165}>
-        <SubtitleText 
-          text="with samosaa.ai" 
-          position="top"
-          isHeading={true}
-          delay={3} // Small delay
-        />
+      
+      {/* Frame 5: What to order tonight? (163-226 frames, 1.6 seconds + 0.5 seconds delay) */}
+      <Sequence from={163} durationInFrames={63}>
+        <Frame5 />
       </Sequence>
-
-      {/* Bottom subtitle - appears later with more delay */}
-      <Sequence from={195}>
-        <SubtitleText 
-          text="your friend who knows what you want" 
-          position="bottom"
-          delay={20} // Additional delay for staggered effect
-        />
+      
+      {/* Frame 6: Now Sorted with samosaa.ai (226-300 frames, 2.5 seconds) */}
+      <Sequence from={226} durationInFrames={74}>
+        <Frame6 />
       </Sequence>
     </AbsoluteFill>
   );
