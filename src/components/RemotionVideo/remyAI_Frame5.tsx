@@ -1,50 +1,50 @@
-import { useCurrentFrame, spring, interpolate, staticFile } from 'remotion';
+import { useCurrentFrame, spring, interpolate } from 'remotion';
+import './fonts.css';
 
-export const Frame5 = () => {
+export const RemyAIFrame5 = () => {
   const frame = useCurrentFrame();
   
-  // Product exit animation
-  const productExitSpring = spring({
-    frame: Math.max(0, frame),
-    from: 0,
-    to: 1,
-    fps: 30,
-    config: { mass: 0.5, stiffness: 100, damping: 12 }
-  });
-  
-  const productOpacity = interpolate(
-    productExitSpring,
-    [0, 0.3],
-    [1, 0],
-    { extrapolateRight: 'clamp' }
-  );
-  
-  const productScale = interpolate(
-    productExitSpring,
-    [0, 0.3],
-    [1, 0.8],
-    { extrapolateRight: 'clamp' }
-  );
-  
   // Question text animation - typing effect
-  const words = ["What", "to", "order", "tonight?"];
-  const wordDelay = 10; // frames per word
-  const wordSpacing = '0.3em';
+  const words = ["Just", "describe", "your", "intent."];
+  const wordDelay = 15; // frames per word
+  const wordSpacing = '0.4em';
   
   return (
     <div style={{ 
       position: 'absolute',
       width: '100%',
       height: '100%',
-      background: 'linear-gradient(160deg, #121214 0%, #0a0a10 100%)',
-      fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif',
+      background: '#09090A',
+      fontFamily: 'Inter',
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      
+      {/* Background blur effect */}
+      <div style={{
+        position: 'absolute',
+        width: '760px',
+        height: '508px',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-90%, -50%)',
+        background: 'rgba(112, 147, 247, 0.12)',
+        filter: 'blur(110px)',
+        borderRadius: '20px',
+      }} />
+      <div style={{
+        position: 'absolute',
+        width: '760px',
+        height: '508px',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-10%, -50%)',
+        background: 'rgba(167, 145, 245, 0.12)',
+        filter: 'blur(110px)',
+        borderRadius: '20px',
+      }} />
       {/* Typing text animation */}
       <div style={{
         position: 'absolute',
@@ -57,7 +57,7 @@ export const Frame5 = () => {
       }}>
         <h1 style={{
           fontSize: '133px',
-          fontWeight: 900,
+          fontWeight: 600,
           margin: 0,
           color: 'white',
           textAlign: 'center',
@@ -65,7 +65,6 @@ export const Frame5 = () => {
           lineHeight: 1,
           textShadow: '0 2px 10px rgba(255, 255, 255, 0.15)',
         }}>
-
           {words.map((word, index) => (
             <span
               key={index}
@@ -86,7 +85,11 @@ export const Frame5 = () => {
                   )
                 }px)`,
                 marginRight: index < words.length - 1 ? wordSpacing : 0,
-                color: index === 3 ? '#a364ff' : 'white',
+                // color: index === 3 ? '#a364ff' : 'white',
+                background: index === 3 ? 'linear-gradient(87deg, #527BF0 32%, #8B6FED 100%)' : 'transparent',
+                WebkitBackgroundClip: index === 3 ? 'text' : 'none',
+                WebkitTextFillColor: index === 3 ? 'transparent' : 'white',
+                backgroundClip: index === 3 ? 'text' : 'none',
                 textShadow: index === 3 ? '0 2px 10px rgba(163, 100, 255, 0.3)' : '0 2px 10px rgba(255, 255, 255, 0.15)',
               }}
             >

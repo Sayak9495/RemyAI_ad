@@ -4,7 +4,7 @@ export const config: typeof Config = {
   fps: 30,
   width: 1080,
   height: 1920,
-  durationInFrames: 330,
+  durationInFrames: 450,
 };
 
 export const webpackConfig = {

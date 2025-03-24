@@ -193,7 +193,7 @@ export const ProductReveal = () => {
         animation: 'spin 20s linear infinite',
         opacity: geometryOpacity,
       }} />
-      <style jsx>{`
+      <style>{`
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }

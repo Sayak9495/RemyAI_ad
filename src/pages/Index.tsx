@@ -1,6 +1,6 @@
 
 import { Player } from "@remotion/player";
-import { ProductAd } from "../components/RemotionVideo/ProductAd";
+import { RemyAI } from "../components/RemotionVideo/RemyAI";
 
 const Index = () => {
   return (
@@ -9,13 +9,13 @@ const Index = () => {
         <h1 className="text-3xl font-bold text-white mb-6 text-center">
           <span className="text-sm uppercase tracking-wider bg-[#6e9fff] text-white px-2 py-1 rounded-full mb-2 inline-block">Premium</span>
           <br />
-          Product Advertisement
+          RemyAI Advertisement
         </h1>
         
         <div className="rounded-xl overflow-hidden shadow-2xl bg-[#121214] border border-[#222]">
           <Player
-            component={ProductAd}
-            durationInFrames={300}
+            component={RemyAI}
+            durationInFrames={2300}
             compositionWidth={1920}
             compositionHeight={1080}
             fps={30}

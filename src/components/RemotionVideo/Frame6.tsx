@@ -1,4 +1,4 @@
-import { useCurrentFrame, spring, interpolate } from 'remotion';
+import { useCurrentFrame, spring, interpolate, random } from 'remotion';
 
 export const Frame6 = () => {
   const frame = useCurrentFrame();
@@ -26,7 +26,60 @@ export const Frame6 = () => {
   
   const subtitleOpacity = interpolate(subtitleSpring, [0, 1], [0, 1]);
   const subtitleY = interpolate(subtitleSpring, [0, 1], [15, 0]);
-  
+
+  // Letter disintegration animation
+  const text = 'with samosaa.ai';
+  const letters = text.split('');
+
+  // Animation timing
+  const startDisintegrate = 30; // Start at frame 30
+  const disintegrateDuration = 20; // Take 20 frames to disintegrate
+  const holdDuration = 25; // Hold disintegrated state for 25 frames
+  const reintegrateDuration = 20; // Take 20 frames to reintegrate
+
+  const getLetterStyle = (index: number) => {
+    const seed = random(index * 1000); // Consistent random for each letter
+    const offset = index * 1.5; // Slightly reduced stagger
+    
+    // Calculate animation progress
+    const disintegrateProgress = interpolate(
+      frame - startDisintegrate - offset,
+      [0, disintegrateDuration],
+      [0, 1],
+      { extrapolateRight: 'clamp', extrapolateLeft: 'clamp' }
+    );
+
+    const reintegrateProgress = interpolate(
+      frame - startDisintegrate - disintegrateDuration - holdDuration - offset,
+      [0, reintegrateDuration],
+      [1, 0],
+      { extrapolateRight: 'clamp', extrapolateLeft: 'clamp' }
+    );
+
+    const progress = frame < startDisintegrate + disintegrateDuration + holdDuration ? disintegrateProgress : reintegrateProgress;
+
+    // Floating animation with more natural movement
+    const floatX = Math.sin(frame * 0.08 + seed * 10) * 8;
+    const floatY = Math.cos(frame * 0.06 + seed * 10) * 8;
+
+    // Calculate transformations with wider spread and more dynamic movement
+    const translateX = interpolate(progress, [0, 1], [0, (seed - 0.5) * 200]) + floatX;
+    const translateY = interpolate(progress, [0, 1], [0, (random(seed + 1) - 0.5) * 150]) + floatY;
+    const rotate = interpolate(progress, [0, 1], [0, (random(seed + 2) - 0.5) * 90]);
+    const scale = interpolate(progress, [0, 1], [1, random(seed + 3) * 0.3 + 0.9]);
+    const opacity = interpolate(progress, [0, 1], [1, 0.85]);
+
+    return {
+      display: 'inline-block',
+      transform: `translate3d(${translateX}px, ${translateY}px, 0) rotate(${rotate}deg) scale(${scale})`,
+      opacity,
+      willChange: 'transform',
+      textRendering: 'optimizeLegibility' as const,
+      WebkitFontSmoothing: 'antialiased' as const,
+      MozOsxFontSmoothing: 'grayscale' as const
+    };
+  };
+
   return (
     <div style={{ 
       position: 'absolute',
@@ -60,7 +113,7 @@ export const Frame6 = () => {
         </h1>
       </div>
       
-      {/* Subtitle "with samosaa.ai" */}
+      {/* Subtitle "with samosaa.ai" with letter animation */}
       <div style={{
         opacity: subtitleOpacity,
         transform: `translateY(${subtitleY}px)`,
@@ -71,14 +124,19 @@ export const Frame6 = () => {
           margin: 0,
           letterSpacing: '-0.02em',
           textTransform: 'uppercase',
-          background: 'linear-gradient(to right, #6e9fff, #9e72ff)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          color: 'transparent',
-          textShadow: '0 0 15px rgba(110, 159, 255, 0.4)',
+          color: '#6e9fff',
+          textShadow: '0 0 20px rgba(110, 159, 255, 0.6)',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '0.1em',
         }}>
-          with samosaa.ai
+          {letters.map((letter, index) => (
+            <span key={index} style={getLetterStyle(index)}>
+              {letter}
+            </span>
+          ))}
         </h2>
       </div>
     </div>

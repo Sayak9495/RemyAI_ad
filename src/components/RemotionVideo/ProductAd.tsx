@@ -3,6 +3,7 @@ import { TextAnimation } from './TextAnimation';
 import { ProductReveal } from './ProductReveal';
 import { Frame5 } from './Frame5';
 import { Frame6 } from './Frame6';
+import { Frame7 } from './Frame7';
 
 export const ProductAd = () => {
   return (
@@ -13,12 +14,12 @@ export const ProductAd = () => {
         <TextAnimation />
       </Sequence>
       
-      {/* Frame 4: Product drop with Samosaa.ai (96-143 frames, 1.5 seconds + 1.2 seconds = 2.7 seconds) */}
+      {/* Frame 4: Product drop with Samosaa.ai (96-163 frames, 2.7 seconds) */}
       <Sequence from={96} durationInFrames={67}>
         <ProductReveal />
       </Sequence>
       
-      {/* Frame 5: What to order tonight? (163-226 frames, 1.6 seconds + 0.5 seconds delay) */}
+      {/* Frame 5: What to order tonight? (163-226 frames, 2.1 seconds) */}
       <Sequence from={163} durationInFrames={63}>
         <Frame5 />
       </Sequence>
@@ -26,6 +27,11 @@ export const ProductAd = () => {
       {/* Frame 6: Now Sorted with samosaa.ai (226-300 frames, 2.5 seconds) */}
       <Sequence from={226} durationInFrames={74}>
         <Frame6 />
+      </Sequence>
+
+      {/* Frame 7: Typing animation (300-450 frames, 5 seconds) */}
+      <Sequence from={300} durationInFrames={150}>
+        <Frame7 />
       </Sequence>
     </AbsoluteFill>
   );
