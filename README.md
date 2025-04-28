@@ -5,6 +5,8 @@ This is a teaser launch video of the product remyAI - an food ordering agent. An
 
 Watch the video here: [remy.craveo.in](https://remy.craveo.in)
 
+[![remyAI Teaser Video](https://img.youtube.com/vi/rt6xdPULwmc/0.jpg)](https://www.youtube.com/watch?v=rt6xdPULwmc)
+
 ## Mindblowing Fact
 In today's world, developers can create stunning, professional-quality videos entirely through code. This project is a testament to that capability, showing how modern tools and frameworks have revolutionized video creation.
 
