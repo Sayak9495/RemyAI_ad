@@ -62,8 +62,6 @@ export const RemyAIFrame71 = () => {
       }} />
       <div
         style={{
-
-          // background:'red',
           transform: `scale(${scale})`,
           transformOrigin: 'center center',
           fontSize: '120px',

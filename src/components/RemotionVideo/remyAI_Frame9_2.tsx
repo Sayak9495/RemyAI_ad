@@ -3,7 +3,7 @@ import './fonts.css';
 
 export const RemyAIFrame9_2 = () => {
   const frame = useCurrentFrame();
-  const scaleAnimationDuration = 9; // 300ms at 30fps
+  const scaleAnimationDuration = 30; // 300ms at 30fps
   
   // Scale animation for main text
   const scale = interpolate(
@@ -40,7 +40,7 @@ export const RemyAIFrame9_2 = () => {
       }}
     >
       {/* Background blur rectangles */}
-      <div style={{
+      {/* <div style={{
         position: 'absolute',
         width: '760px',
         height: '508px',
@@ -61,16 +61,17 @@ export const RemyAIFrame9_2 = () => {
         background: 'rgba(167, 145, 245, 0.12)',
         filter: 'blur(110px)',
         borderRadius: '20px',
-      }} />
+      }} /> */}
       
       {/* Main text with scale animation */}
       <div 
         style={{
           transform: `scale(${scale})`,
           color: '#fff',
-          fontSize: '164px',
-          fontWeight: 500,
+          fontSize: '160px',
+          fontWeight: 600,
           textAlign: 'center',
+          lineHeight: '100%',
         }}
       >
         Order Faster
@@ -80,10 +81,11 @@ export const RemyAIFrame9_2 = () => {
       <div 
         style={{
           opacity: subtextOpacity,
-          fontSize: '144px',
-          fontWeight: 500,
+          fontSize: '160px',
+          fontWeight: 600,
           display: 'flex',
           gap: '20px',
+          lineHeight: '100%',
         }}
       >
         {/* <span style={{ color: '#fff' }}>on every</span> */}
@@ -93,9 +95,10 @@ export const RemyAIFrame9_2 = () => {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
+            lineHeight: '100%',
           }}
         >
-          Smarter.
+          Smarter
         </span>
       </div>
     </AbsoluteFill>

@@ -7,16 +7,16 @@ export const RemyAIFrame7 = () => {
   
   // Text animation configuration
   const queries = [
-    "Biryani under ₹199",
+    "Biryani under ₹399",
     "Family dinner for 4, all veg",
     "Office lunch under 15 minutes",
     "Kuch bhi..."
   ];
 
-  // Animation timing constants
-  const typingDuration = 25; // frames for typing (fast but readable)
-  const displayDuration = 30; // frames for display (quick but enough to read)
-  const deleteDuration = 14; // frames for deletion (faster to match typing)
+  // Animation timing (at 60fps)
+  const typingDuration = 50; // frames for typing (fast but readable)
+  const displayDuration = 60; // frames for display (quick but enough to read)
+  const deleteDuration = 28; // frames for deletion (faster to match typing)
   const cycleDuration = typingDuration + displayDuration + deleteDuration; // total frames per query
 
   // Calculate current query and timing
@@ -67,8 +67,8 @@ export const RemyAIFrame7 = () => {
   const lastQueryStartFrame = (queries.length - 1) * cycleDuration;
   const lastQueryTypingEndFrame = lastQueryStartFrame + typingDuration;
   
-  // Auto-click animation timing - start right after last query is typed
-  const clickStartFrame = lastQueryTypingEndFrame + 8; // Add a small delay after typing
+  // Click animation timing
+  const clickStartFrame = lastQueryTypingEndFrame + 16; // Add a small delay after typing
   const clickDuration = 30; // 1 second for visible animation
 
   // Check if we're in the final animation phase

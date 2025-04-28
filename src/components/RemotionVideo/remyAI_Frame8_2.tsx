@@ -11,7 +11,7 @@ export const RemyAIFrame8_2 = () => {
   
   // Calculate durations
   const part1Duration = Math.ceil(messagePart1.length / messageCharsPerFrame);
-  const part2Duration = Math.ceil(messagePart2.length / messageCharsPerFrame+14);
+  const part2Duration = Math.ceil(messagePart2.length / messageCharsPerFrame+30);
   const totalDuration = part1Duration + delayFrames + part2Duration;
   
   // Animation timing constants
@@ -29,7 +29,7 @@ export const RemyAIFrame8_2 = () => {
   // Calculate typing progress for part 1
   const part1Progress = interpolate(
     frame - typingStartFrame,
-    [0, messagePart1.length / 0.8],
+    [0, messagePart1.length / 0.7],
     [0, messagePart1.length],
     {
       extrapolateLeft: 'clamp',
@@ -40,7 +40,7 @@ export const RemyAIFrame8_2 = () => {
   // Calculate typing progress for part 2
   const part2Progress = interpolate(
     frame - (typingStartFrame + part1Duration + delayFrames),
-    [0, messagePart2.length / 0.45], // Reduced from 1 to 0.6 to slow down typing
+    [0, messagePart2.length / 0.3], // Reduced from 1 to 0.6 to slow down typing
     [0, messagePart2.length],
     {
       extrapolateLeft: 'clamp',
@@ -70,7 +70,7 @@ export const RemyAIFrame8_2 = () => {
         padding: '32px',
       }}
     >
-      {/* Background blur rectangles */}
+      {/* Background blur rectangles
       <div style={{
         position: 'absolute',
         width: '760px',
@@ -92,7 +92,7 @@ export const RemyAIFrame8_2 = () => {
         background: 'rgba(167, 145, 245, 0.12)',
         filter: 'blur(110px)',
         borderRadius: '20px',
-      }} />
+      }} /> */}
       {/* Top section with assistant and message */}
       <div style={{ 
         display: 'flex',
@@ -206,28 +206,94 @@ export const RemyAIFrame8_2 = () => {
 
       {/* Cart images */}
       <div style={{
+        position: 'relative',
+        width: '100%',
+        height: '600px',
         display: 'flex',
-        // width: '629px',
-        // height: '536px', // Adjusted proportionally
-        margin: '120px auto 0', // Increased top margin
-        gap: '44px',
-        opacity: cartOpacity,
-        transform: `translateY(${interpolate(cartOpacity, [0, 1], [20, 0])}px)`,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '0 auto',
       }}>
-        {[1, 2, 3].map((num) => (
+        {/* Cart 2 (Left) */}
+        <div style={{
+          position: 'absolute',
+          left: '200px',
+          // opacity: cartOpacity,
+          transform: `translateY(${interpolate(
+            frame - cartStartFrame,
+            [0, 24], // 300ms at 60fps
+            [840, 110],
+            {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+              easing: (t) => 1 - Math.pow(1 - t, 2), // ease-out
+            }
+          )}px)`,
+        }}>
           <img
-            key={num}
-            // src={`/cart${num}.png`}
-            src={staticFile(`cart${num}.png`)}
-            alt={`Cart ${num}`}
+            src={staticFile('leftCart.png')}
+            alt="Cart 2"
             style={{
-              width: '580px',
-              // height: '536px',  
+              width: '612px',
               height: 'auto',
               borderRadius: '12px',
             }}
           />
-        ))}
+        </div>
+
+        {/* Cart 1 (Middle) */}
+        <div style={{
+          position: 'absolute',
+          transform: `translateY(${interpolate(
+            frame - cartStartFrame,
+            [0, 24], // 300ms at 60fps
+            [1040, 30], // Move up 40px more than others
+            {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+              easing: (t) => 1 - Math.pow(1 - t, 2), // ease-out
+            }
+          )}px)`,
+          // opacity: cartOpacity,
+          zIndex: 2, // Ensure middle cart is above others
+        }}>
+          <img
+            src={staticFile('middleCart.png')}
+            alt="Cart 1"
+            style={{
+              width: '640px',
+              height: 'auto',
+              borderRadius: '12px',
+            }}
+          />
+        </div>
+
+        {/* Cart 3 (Right) */}
+        <div style={{
+          position: 'absolute',
+          right: '200px',
+          // opacity: cartOpacity,
+          transform: `translateY(${interpolate(
+            frame - cartStartFrame,
+            [0, 24], // 300ms at 60fps
+            [840, 110],
+            {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+              easing: (t) => 1 - Math.pow(1 - t, 2), // ease-out
+            }
+          )}px)`,
+        }}>
+          <img
+            src={staticFile('rightCart.png')}
+            alt="Cart 3"
+            style={{
+              width: '612px',
+              height: 'auto',
+              borderRadius: '12px',
+            }}
+          />
+        </div>
       </div>
     </AbsoluteFill>
   );

@@ -5,9 +5,17 @@ export const RemyAIFrame8_1 = () => {
   const frame = useCurrentFrame();
   const text = "Thinking";
   const dots = "...";
-  const animationDuration = 45; // 1.5 seconds at 30fps
+  const animationDuration = 90; // 1.5 seconds at 60fps
   const cyclesPerSecond = 2; // Animation will cycle 2 times per second
 
+  // Animation timing constants
+  const CLICK_START = 0;
+  const CLICK_DURATION = 15;
+  const TYPING_DURATION_PART1 = 60;
+  const PAUSE_DURATION = 44;
+  const TYPING_DURATION_PART2 = 80;
+  const TOTAL_DURATION = CLICK_START + CLICK_DURATION + TYPING_DURATION_PART1 + PAUSE_DURATION + TYPING_DURATION_PART2;
+  
   // Calculate dot opacity for sequential fade
   const getDotsOpacity = (index: number) => {
     const dotProgress = interpolate(
@@ -24,6 +32,21 @@ export const RemyAIFrame8_1 = () => {
     );
     return dotProgress;
   };
+
+  // Calculate timing for background fade
+  const fadeStartFrame = TOTAL_DURATION + -128; // Start fade after all animations complete
+  const fadeDuration = 20; // 500ms at 60fps
+  
+  const blurOpacity = interpolate(
+    frame - fadeStartFrame,
+    [0, fadeDuration],
+    [1, 0],
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+      easing: (t) => 1 - Math.pow(1 - t, 2), // ease-out
+    }
+  );
 
   return (
     <AbsoluteFill
@@ -45,9 +68,10 @@ export const RemyAIFrame8_1 = () => {
         left: '50%',
         top: '50%',
         transform: 'translate(-90%, -50%)',
-        background: 'rgba(112, 147, 247, 0.12)',
-        filter: 'blur(110px)',
+        background: `rgba(112, 147, 247, ${0.12 * blurOpacity})`,
+        filter: `blur(${110 * blurOpacity}px)`,
         borderRadius: '20px',
+        transition: 'all 0.5s ease-out',
       }} />
       <div style={{
         position: 'absolute',
@@ -56,9 +80,10 @@ export const RemyAIFrame8_1 = () => {
         left: '50%',
         top: '50%',
         transform: 'translate(-10%, -50%)',
-        background: 'rgba(167, 145, 245, 0.12)',
-        filter: 'blur(110px)',
+        background: `rgba(167, 145, 245, ${0.12 * blurOpacity})`,
+        filter: `blur(${110 * blurOpacity}px)`,
         borderRadius: '20px',
+        transition: 'all 0.5s ease-out',
       }} />
 
       <div style={{ 

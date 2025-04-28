@@ -4,13 +4,13 @@ import './fonts.css';
 export const RemyAIFrame21 = () => {
   const frame = useCurrentFrame();
   
-  // Animation timing (at 30fps)
+  // Animation timing (at 60fps)
   const SVG_START = 0;
-  const SVG_DURATION = 15; // 500ms for scale animation
+  const SVG_DURATION = 30; // 500ms for scale animation
   const REMY_START = SVG_START + SVG_DURATION; // Start Remy immediately after scale
-  const REMY_DURATION = 15; // Duration for Remy text animation
-  const SUBTITLE_START = REMY_START + REMY_DURATION + 10; // Start subtitle after Remy text
-  const SUBTITLE_DURATION = 9; // 300ms duration (9 frames at 30fps)
+  const REMY_DURATION = 30; // Duration for Remy text animation
+  const SUBTITLE_START = REMY_START + REMY_DURATION + 20; // Start subtitle after Remy text
+  const SUBTITLE_DURATION = 18; // 300ms duration (18 frames at 60fps)
 
   // SVG scale animation
   const svgScale = interpolate(
@@ -239,7 +239,7 @@ export const RemyAIFrame21 = () => {
         transform: `translateY(${subtitleY}rem)`,
         transition: 'transform 0.3s ease-out',
       }}>
-        Your foodie friend
+        Your AI Foodie Friend
       </h2>
     </div>
   );

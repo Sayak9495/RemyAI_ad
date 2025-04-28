@@ -4,9 +4,9 @@ import './fonts.css';
 export const RemyAIFrame2 = () => {
   const frame = useCurrentFrame();
   
-  // Animation timing (at 30fps)
-  const SCALE_DURATION = 24; // 300ms for scale animation
-  const QUESTION_MARK_START = 24; // Start showing ? after scale down
+  // Animation timing (at 60fps)
+  const SCALE_DURATION = 48; // 300ms for scale animation
+  const QUESTION_MARK_START = 24; // Start question mark animation after 400ms
 
   // Scale animation
   const scale = interpolate(

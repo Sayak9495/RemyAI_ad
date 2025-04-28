@@ -1,10 +1,10 @@
 import {Config} from 'remotion';
 
 export const config: typeof Config = {
-  fps: 30,
-  width: 1080,
-  height: 1920,
-  durationInFrames: 450,
+  fps: 60,
+  width: 360,
+  height: 640,
+  durationInFrames: 4600,
 };
 
 export const webpackConfig = {

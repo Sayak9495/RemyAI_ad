@@ -4,23 +4,19 @@ import './fonts.css';
 export const RemyAIFrame73 = () => {
   const frame = useCurrentFrame();
   
-  // 1.3 seconds = 39 frames at 30fps
-  const TYPING_DURATION = 30;
+  // 1.3 seconds = 78 frames at 60fps
+  const TYPING_DURATION = 60;
   
-  // Split the text into parts
+  // Text typing animation
   const textPart1 = "Remy can do ";
   const textPart2 = "more";
   const fullText = textPart1 + textPart2;
   
-  // Calculate how many characters to show
   const progress = interpolate(
     frame,
     [0, TYPING_DURATION],
     [0, fullText.length],
-    {
-      extrapolateRight: 'clamp',
-      extrapolateLeft: 'clamp'
-    }
+    { extrapolateRight: 'clamp' }
   );
   
   const currentProgress = Math.floor(progress);
@@ -33,41 +29,34 @@ export const RemyAIFrame73 = () => {
     <div style={{
       width: '100%',
       height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
       background: '#09090A',
       fontFamily: 'Inter',
     }}>
+  
+      {/* Text at the top */}
       <div style={{
+        width: '1880px',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
         fontSize: '160px',
         fontWeight: 600,
-        position: 'relative',
-        // display: 'flex',
-        gap: '38px',
-        // marginLeft: '-80px',
+        textAlign: 'center',
+        lineHeight: '130%',
       }}>
-        {/* Regular text part */}
-        <span style ={{ color: '#F5F5F7' }}>
-          {showPart1}
-        </span>
-        
-        {/* Gradient text part */}
+        <span style={{ color: '#F5F5F7' }}>{showPart1}</span>
         <span style={{
           background: 'linear-gradient(86deg, #527BF0 0.16%, #A791F5 100.16%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
-        }}>
-          {showPart2}
-        </span>
-        
-        {/* Blinking cursor */}
+        }}>{showPart2}</span>
         <span 
           style={{
-            opacity: frame % 30 < 15 ? 1 : 0, // Blink cursor every 500ms
-            // marginLeft: '2px',
-            color: '#527BF0',
+            opacity: frame % 60 < 30 ? 1 : 0, // Blink cursor every 500ms
+            marginLeft: '2px',
+            color: '#F5F5F7',
           }}
         >|</span>
       </div>

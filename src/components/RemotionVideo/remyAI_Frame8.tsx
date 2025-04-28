@@ -4,27 +4,23 @@ import './fonts.css';
 export const RemyAIFrame8 = () => {
   const frame = useCurrentFrame();
   
-  // Animation timing constants (in frames at 30fps)
-  const CLICK_START = 30; // When the click animation starts
-  const CLICK_DURATION = 15; // Duration of click animation
-  const INITIAL_DELAY = CLICK_START + CLICK_DURATION + 15; // Start moving down after click
-  const MOVE_DOWN_DURATION = 12; // 400ms
-  const TYPING_DURATION_PART1 = 50; // First part typing duration
-  const TYPING_DURATION_PART2 = 40; // Second part typing duration
-  
+  // Animation timing constants (in frames at 60fps)
+  const CLICK_START = 30;
+  const CLICK_DURATION = 35; // Duration of click animation
+  const INITIAL_DELAY = CLICK_START + CLICK_DURATION + 30; // Start moving down after click
+  const MOVE_DOWN_DURATION = 24; // 400ms
+  const TYPING_DURATION_PART1 = 100; // First part typing duration
+  const TYPING_DURATION_PART2 = 90; // Second part typing duration
+  const PAUSE_DURATION = 25; // 1 second pause at 60fps
   // Click animation
   const clickScale = interpolate(
     frame - CLICK_START,
     [0, CLICK_DURATION * 0.3, CLICK_DURATION],
-    [1, 0.92, 1],
+    [1, 0.8, 1],
     {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
-      easing: (t) => {
-        // Custom easing for more natural click feel
-        if (t < 0.3) return 1 - Math.pow(1 - t/0.3, 2); // Quick contract
-        return 1 - Math.pow(1 - ((t-0.3)/0.7), 3); // Slower expand
-      }
+      easing: (t) => 1 - Math.pow(1 - t, 3)
     }
   );
 
@@ -56,9 +52,8 @@ export const RemyAIFrame8 = () => {
   const finalScale = frame < INITIAL_DELAY ? clickScale : clickScale * moveScale;
   
   // Text typing animation with pause
-  const textPart1 = "Hey, I am craving ";
+  const textPart1 = "Hey Remy, I am craving ";
   const textPart2 = "some burger and coke under ₹300";
-  const PAUSE_DURATION = 22; // 1 second pause at 30fps
 
   const typingProgress = frame - INITIAL_DELAY - MOVE_DOWN_DURATION;
   let visibleText = '';
@@ -131,7 +126,7 @@ export const RemyAIFrame8 = () => {
       
       {/* Text at the top */}
       <div style={{
-        width: '1180px',
+        width: '1280px',
         position: 'absolute',
         top: '20%',
         left: '50%',
@@ -139,17 +134,16 @@ export const RemyAIFrame8 = () => {
         color: '#F5F5F7',
         fontSize: '106px',
         fontWeight: 500,
-        // whiteSpace: 'nowrap',
         textAlign: 'center',
         lineHeight: '130%',
       }}>
         {visibleText}
         <span 
           style={{
-            opacity: frame % 30 < 15 ? 1 : 0, // Blink cursor every 500ms
+            opacity: typingProgress > 0 && frame % 30 < 15 ? 1 : 0, // Only show cursor when typing starts
             marginLeft: '2px',
           }}
-        ></span>
+        >|</span>
       </div>
       
       {/* Assistant Circle */}

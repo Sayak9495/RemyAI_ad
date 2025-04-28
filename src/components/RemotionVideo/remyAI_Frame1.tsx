@@ -56,11 +56,11 @@ const StylishUnderline = ({ show, wordLength, delay }: { show: boolean; wordLeng
 export const RemyAIFrame1 = () => {
   const frame = useCurrentFrame();
   
-  // Animation timing (at 30fps)
-  const LETTER_DURATION = 2; // Duration for each letter animation
-  const LETTER_DELAY = 1.8; // Delay between each letter
-  const PHRASE_DURATION = 40; // Duration to show each phrase
-  const SCALE_DURATION = 9; // 200ms for scale animation
+  // Animation timing (at 60fps)
+  const LETTER_DURATION = 4; // Duration for each letter animation
+  const LETTER_DELAY = 3.6; // Delay between each letter
+  const PHRASE_DURATION = 80; // Duration to show each phrase
+  const SCALE_DURATION = 12; // 200ms for scale animation
   const HOLD_DURATION = 500; // Duration to hold the last phrase
 
   const phrases = [

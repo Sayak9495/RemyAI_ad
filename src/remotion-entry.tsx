@@ -8,16 +8,16 @@ export const RemotionVideo = () => {
       <Composition
         id="product-reveal"
         component={ProductAd}
-        durationInFrames={450}
-        fps={30}
+        durationInFrames={900}
+        fps={60}
         width={1920}
         height={1080}
       />
       <Composition
         id="remy-ai"
         component={RemyAI}
-        durationInFrames={2100}  // Total duration based on the latest frame
-        fps={30}
+        durationInFrames={4600}  // Total duration based on the latest frame
+        fps={60}
         width={1920}
         height={1080}
       />

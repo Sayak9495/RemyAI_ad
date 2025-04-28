@@ -1,22 +1,35 @@
-# Welcome to your Lovable project
+# remyAI - Food Ordering Agent Teaser Video
 
-## Project info
+## Description
+This is a teaser launch video of the product remyAI - an food ordering agent. And this video is completely coded out. The best part? This is vibe coded within 2 days by a backend engineer who knows very little about frontend! 🚀
 
-**URL**: https://lovable.dev/projects/2ec62741-3ebb-4d5c-9edc-ffc671f6c5d4
+Watch the video here: [remy.craveo.in](https://remy.craveo.in)
+
+## Mindblowing Fact
+In today's world, developers can create stunning, professional-quality videos entirely through code. This project is a testament to that capability, showing how modern tools and frameworks have revolutionized video creation.
+
+## Project Journey
+This project was initially coded by Lovable website to take it up the ground fast, then downloaded and using Windsurf editor (sometimes Cursor) made what was required. The entire video was vibe coded within 2 days using Windsurf - a shoutout to the amazing team behind this incredible editor! 
+
+## How it Works
+The video is created using several powerful concepts:
+- **Frames**: Each moment in the video is represented as a frame, allowing precise control over animations and transitions
+- **Interpolation**: Smooth transitions between frames are achieved through interpolation, creating fluid motion
+- **Remotion**: A powerful framework that enables video creation using React components and JavaScript
+
+## Technologies Used
+This project is built with:
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+- Remotion (for video creation)
+
 
 ## How can I edit this code?
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/2ec62741-3ebb-4d5c-9edc-ffc671f6c5d4) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
 **Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -36,34 +49,3 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2ec62741-3ebb-4d5c-9edc-ffc671f6c5d4) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

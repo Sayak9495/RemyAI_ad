@@ -6,17 +6,17 @@ export const RemyAIFrame72 = () => {
   const frame = useCurrentFrame();
   
   // Animation timing constants
-  const INITIAL_DELAY = 6;  // 200ms at 30fps
-  const MOVE_UP_DURATION = 9; // 300ms at 30fps
-  const THINKING_DELAY = 15; // 2000ms (2s) at 30fps
-  const CART_START_DELAY = 36; // 200ms after thinking
+  const INITIAL_DELAY = 12;  // 200ms at 60fps
+  const MOVE_UP_DURATION = 60; // 300ms at 60fps
+  const THINKING_DELAY = 30; // 2000ms (2s) at 60fps
+  const CART_START_DELAY = 72; // 200ms after thinking
 
   // Calculate total initial animation time
   const INITIAL_ANIMATIONS = INITIAL_DELAY + MOVE_UP_DURATION + THINKING_DELAY + CART_START_DELAY;
 
   // Cart animation timings
-  const TRANSITION_DURATION = 12; // 400ms for cart transitions
-  const DELAY_DURATION = 12; // 400ms delay between carts
+  const TRANSITION_DURATION = 24; // 400ms for cart transitions
+  const DELAY_DURATION = 24; // 400ms delay between carts
   
   // Key animation frames for carts (shifted by initial animations)
   const CART2_START_FRAME = INITIAL_ANIMATIONS + TRANSITION_DURATION;
@@ -24,15 +24,15 @@ export const RemyAIFrame72 = () => {
   const CART3_END_FRAME = CART3_START_FRAME + TRANSITION_DURATION;
   
   // Cursor animation timing
-  const CURSOR_DELAY = 6; // 200ms delay after cart3 is fully visible
+  const CURSOR_DELAY = 12; // 200ms delay after cart3 is fully visible
   const CURSOR_START_FRAME = CART3_END_FRAME + CURSOR_DELAY;
-  const CURSOR_ANIMATION_DURATION = 18; // 600ms animation duration
-  const ORDER_PLACED_START_FRAME = CURSOR_START_FRAME + CURSOR_ANIMATION_DURATION+10;
+  const CURSOR_ANIMATION_DURATION = 36; // 600ms animation duration
+  const ORDER_PLACED_START_FRAME = CURSOR_START_FRAME + CURSOR_ANIMATION_DURATION + 20;
 
   // Button click animation
   const buttonClickProgress = interpolate(
     frame - (CURSOR_START_FRAME + CURSOR_ANIMATION_DURATION * 0.8),
-    [0, 3, 6], // 200ms animation
+    [0, 6, 12], // 200ms animation
     [1, 0.95, 1],
     {
       extrapolateLeft: 'clamp',
@@ -49,7 +49,7 @@ export const RemyAIFrame72 = () => {
     {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
-      easing: (t) => 1 - Math.pow(1 - t, 3) // Ease out cubic
+      easing: (t) => 1 - Math.pow(1 - t, 1) // Ease out cubic
     }
   );
 
@@ -252,10 +252,10 @@ export const RemyAIFrame72 = () => {
       {/* Search box container */}
       <div style={{
         position: 'absolute',
-        top: moveUpProgress === 0 ? '50%' : '10%',
+        top: moveUpProgress === 0 ? '50%' : '7%',
         left: '50%',
         transform: `translate(-50%, -50%)`,
-        transition: 'top 0.3s ease-out',
+        transition: 'top 0.6s ease-out',
         height: '80px',
         width: '100%',
         display: 'flex',
@@ -273,7 +273,8 @@ export const RemyAIFrame72 = () => {
           flexShrink: 0,
           borderRadius: '25px',
           border: '2px solid rgba(225, 231, 240, 0.16)',
-          margin: '0 auto',
+          // margin: '0 auto',
+          marginLeft: '-30px',
         }}>
           <span style={{
             fontSize: '34px',
@@ -281,16 +282,17 @@ export const RemyAIFrame72 = () => {
             color: '#F5F5F7',
             whiteSpace: 'pre',
             letterSpacing: '0',
+            width: '100%',
           }}>
-            Family dinner for 4, all veg
+            Office lunch under 15 minutes
           </span>
         </div>
 
         {/* Thinking animation */}
         <div style={{ 
-          marginTop: '52px', 
+          // marginTop: '10px', 
           width: '790px',
-          margin: '52px auto 0',
+          margin: '20px auto 0',
         }}>
           {showThinking && (
             <div style={{
@@ -376,10 +378,10 @@ export const RemyAIFrame72 = () => {
       {/* Cart Images Container */}
       <div style={{
         position: 'relative',
-        width: '629px',
-        height: '536px',
-        margin: '180px auto 0',
-        left: '16%',
+        width: '790px',
+        height: '754px',
+        margin: '240px auto 0',
+        left: '20%',
         transform: 'translateX(-50%)',
         opacity: cart1Progress,
       }}>
@@ -414,9 +416,9 @@ export const RemyAIFrame72 = () => {
           position: 'absolute',
           width: '32px',
           height: '38px',
-          top: interpolate(cursorProgress, [0, 0.8, 1], [435, 472, 862]),
+          top: interpolate(cursorProgress, [0, 0.8, 1], [435, 482, 882]),
           left: interpolate(cursorProgress, [0, 0.8, 1], [425, 626, 1166]),
-          transform: `scale(${interpolate(cursorProgress, [0.8, 1], [1, 0.9])})`,
+          transform: `scale(${interpolate(cursorProgress, [0.8, 1], [1, 0.85])})`,
           zIndex: 100,
           filter: cursorProgress >= 0.8 ? 'brightness(0.8)' : 'none',
           transition: 'filter 0.1s ease',

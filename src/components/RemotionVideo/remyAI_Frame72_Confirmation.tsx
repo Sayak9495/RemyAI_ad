@@ -5,7 +5,7 @@ export const RemyAIFrame72_Confirmation = () => {
   const frame = useCurrentFrame();
   
   // Animation timing
-  const FADE_DURATION = 10; // ~333ms at 30fps
+  const FADE_DURATION = 20; // ~333ms at 60fps
   
   const opacity = interpolate(
     frame,

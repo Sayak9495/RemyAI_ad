@@ -3,7 +3,7 @@ import './fonts.css';
 
 export const RemyAIFrame9 = () => {
   const frame = useCurrentFrame();
-  const scaleAnimationDuration = 9; // 300ms at 30fps
+  const scaleAnimationDuration = 18; // 300ms at 30fps
   
   // Scale animation for main text
   const scale = interpolate(
@@ -39,54 +39,33 @@ export const RemyAIFrame9 = () => {
         gap: '24px',
       }}
     >
-      {/* Background blur rectangles */}
-      <div style={{
-        position: 'absolute',
-        width: '760px',
-        height: '508px',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-90%, -50%)',
-        background: 'rgba(112, 147, 247, 0.12)',
-        filter: 'blur(110px)',
-        borderRadius: '20px',
-      }} />
-      <div style={{
-        position: 'absolute',
-        width: '760px',
-        height: '508px',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-10%, -50%)',
-        background: 'rgba(167, 145, 245, 0.12)',
-        filter: 'blur(110px)',
-        borderRadius: '20px',
-      }} />
 
       {/* Main text with scale animation */}
       <div 
         style={{
           transform: `scale(${scale})`,
           color: '#fff',
-          fontSize: '134px',
-          fontWeight: 500,
+          fontSize: '106.6px',
+          fontWeight: 600,
           textAlign: 'center',
+          lineHeight: '100%',
         }}
       >
-        Remy bonds with you
+        Remy bonds with you on every
       </div>
 
       {/* Subtext with gradient on "interaction" */}
       <div 
         style={{
           opacity: subtextOpacity,
-          fontSize: '104px',
-          fontWeight: 500,
+          fontSize: '160px',
+          fontWeight: 600,
           display: 'flex',
           gap: '20px',
+          lineHeight: '100%',
         }}
       >
-        <span style={{ color: '#fff' }}>on every</span>
+        {/* <span style={{ color: '#fff' }}>on every</span> */}
         <span
           style={{
             background: 'linear-gradient(86deg, #527BF0 0.16%, #A791F5 100.16%)',
@@ -95,7 +74,7 @@ export const RemyAIFrame9 = () => {
             backgroundClip: 'text',
           }}
         >
-          interaction
+          interaction.
         </span>
       </div>
     </AbsoluteFill>

@@ -6,7 +6,7 @@ export const RemyAIFrame5 = () => {
   
   // Question text animation - typing effect
   const words = ["Just", "describe", "your", "intent."];
-  const wordDelay = 15; // frames per word
+  const wordDelay = 30; // frames per word at 60fps
   const wordSpacing = '0.4em';
   
   return (

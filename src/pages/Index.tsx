@@ -15,10 +15,10 @@ const Index = () => {
         <div className="rounded-xl overflow-hidden shadow-2xl bg-[#121214] border border-[#222]">
           <Player
             component={RemyAI}
-            durationInFrames={2300}
+            durationInFrames={4600}
             compositionWidth={1920}
             compositionHeight={1080}
-            fps={30}
+            fps={60}
             style={{
               width: '100%',
               aspectRatio: '16/9',

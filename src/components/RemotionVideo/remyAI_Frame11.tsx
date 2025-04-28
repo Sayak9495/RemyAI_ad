@@ -10,7 +10,7 @@ export const RemyAIFrame11 = () => {
     'Boring Feeds?'
   ];
 
-  // Animation timing (at 30fps)
+  // Animation timing (at 60fps)
   const ROTATION_DURATION = 6; // 200ms for rotation
   const DISPLAY_DURATION = 25; // 500ms display time
   const CYCLE_DURATION = ROTATION_DURATION + DISPLAY_DURATION;

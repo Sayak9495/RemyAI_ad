@@ -3,9 +3,10 @@ import './fonts.css';
 
 export const RemyAIFrame9_1 = () => {
   const frame = useCurrentFrame();
-  const scaleAnimDuration = 6; // 200ms at 30fps
-  const waitDuration = 25; // 500ms at 30fps
-  const rotationDuration = 30; // 200ms at 30fps
+  const scaleAnimDuration = 24; // 400ms at 60fps
+  const waitDuration = 50; // 500ms at 60fps
+  const rotationDuration = 60; // 200ms at 60fps
+  const TYPING_DURATION = 22; // 200ms at 60fps
   
   // Initial animation timing
   const firstWordScale = interpolate(
@@ -42,14 +43,38 @@ export const RemyAIFrame9_1 = () => {
   const phase2Start = scaleAnimDuration * 2 + waitDuration;
   const showPhase2 = frame >= phase2Start;
   
+  // Animation for the static text
+  const staticTextOpacity = interpolate(
+    frame - phase2Start,
+    [0, 30], // 500ms at 60fps
+    [0, 1],
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+      easing: (t) => 1 - Math.pow(1 - t, 2), // ease-out
+    }
+  );
+
+  const staticTextY = interpolate(
+    frame - phase2Start,
+    [0, 30], // 500ms at 60fps
+    [20, 0],
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+      easing: (t) => 1 - Math.pow(1 - t, 2), // ease-out
+    }
+  );
+  
   // Rotating words animation
-  const rotatingWords = ['Movie', 'Meeting', 'Match', 'Netflix', "Partner", "Lecture", "Game"];
+  const rotatingWords = ['Movie', 'Meeting', 'Match', 'Netflix', "Partner", "Game"];
   const finalPhrase = 'you can chill';
   
   // Determine which word to show based on current frame
   const getRotatingWord = () => {
-    if (frame >= phase2Start + rotationDuration * rotatingWords.length) {
-      return null; // Show final phrase
+    const lastWordFrame = phase2Start + rotationDuration * rotatingWords.length;
+    if (frame >= lastWordFrame) {
+      return rotatingWords[rotatingWords.length - 1]; // Return last word and hold it
     }
     
     const wordIndex = Math.min(
@@ -60,8 +85,34 @@ export const RemyAIFrame9_1 = () => {
     return rotatingWords[wordIndex];
   };
   
+  // Typewriter animation for the current word
+  const getTypewriterText = () => {
+    const currentWord = getRotatingWord();
+    if (!currentWord) return null;
+    
+    const lastWordFrame = phase2Start + rotationDuration * rotatingWords.length;
+    if (frame >= lastWordFrame) {
+      return currentWord; // Return full word without typing animation
+    }
+    
+    const wordStartFrame = phase2Start + Math.floor((frame - phase2Start) / rotationDuration) * rotationDuration;
+    const typingProgress = interpolate(
+      frame - wordStartFrame,
+      [0, TYPING_DURATION],
+      [0, currentWord.length],
+      { extrapolateRight: 'clamp' }
+    );
+    
+    return currentWord.slice(0, Math.floor(typingProgress));
+  };
+  
   // Rotation animation for words
   const getRotationParams = () => {
+    const lastWordFrame = phase2Start + rotationDuration * rotatingWords.length;
+    if (frame >= lastWordFrame) {
+      return { rotateY: 0, scale: 1, opacity: 1, currentIndex: rotatingWords.length - 1 }; // Hold last word steady
+    }
+    
     const currentIndex = Math.min(
       Math.floor((frame - phase2Start) / rotationDuration),
       rotatingWords.length
@@ -98,7 +149,7 @@ export const RemyAIFrame9_1 = () => {
   
   const rotationParams = getRotationParams();
   const finalParams = getFinalPhraseParams();
-  const currentRotatingWord = getRotatingWord();
+  const typewriterText = getTypewriterText();
   
   return (
     <AbsoluteFill
@@ -112,37 +163,13 @@ export const RemyAIFrame9_1 = () => {
         color: '#fff',
       }}
     >
-      {/* Background blur rectangles */}
-      <div style={{
-        position: 'absolute',
-        width: '760px',
-        height: '508px',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-90%, -50%)',
-        background: 'rgba(112, 147, 247, 0.12)',
-        filter: 'blur(110px)',
-        borderRadius: '20px',
-      }} />
-      <div style={{
-        position: 'absolute',
-        width: '760px',
-        height: '508px',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-10%, -50%)',
-        background: 'rgba(167, 145, 245, 0.12)',
-        filter: 'blur(110px)',
-        borderRadius: '20px',
-      }} />
-
       {!showPhase2 ? (
         // Phase 1: "So that" with scale animation
         <div style={{ 
           display: 'flex', 
-          gap: '30px',
-          fontSize: '124px',
-          fontWeight: 500,
+          gap: '62px',
+          fontSize: '160px',
+          fontWeight: 600,
         }}>
           <div style={{ 
             transform: `scale(${firstWordScale})`,
@@ -159,32 +186,54 @@ export const RemyAIFrame9_1 = () => {
       ) : (
         // Phase 2: Rotating text animation
         <div style={{ 
-          fontSize: '92px',
-          fontWeight: 500,
+          fontSize: '110px',
+          fontWeight: 600,
           display: 'flex',
           alignItems: 'center',
-          gap: '68px',
           width: '100%',
           justifyContent: 'center',
         }}>
           <div style={{
-            width: '1200px',
-            textAlign: 'right',
+            width: '100%',
+            textAlign: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            // gap: '10px',
           }}>
-            you can go back to your
-          </div>
-          
-          <div style={{ 
-            fontSize: '102px',
-            transform: `perspective(800px) rotateY(${rotationParams.rotateY}deg) scale(${rotationParams.scale})`,
-            opacity: rotationParams.opacity,
-            background: 'linear-gradient(86deg, #527BF0 0.16%, #A791F5 100.16%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            width: '400px',
-          }}>
-            {currentRotatingWord}
+            <div style={{
+              // background: 'red',
+              width: '1350px',
+              opacity: staticTextOpacity,
+              transform: `translateY(${staticTextY}px)`,
+            }}>
+              You can go back to your
+            </div>
+            <div style={{ 
+              width: '450px',
+              textAlign: 'left',
+              fontSize: '110px',
+              opacity: rotationParams.opacity,
+              background: 'linear-gradient(86deg, #527BF0 0.16%, #A791F5 100.16%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '20px',
+            }}>
+              {typewriterText}
+              <span 
+                style={{
+                  opacity: frame % 60 < 30 ? 1 : 0,
+                  // marginLeft: '0.5px',
+                  background: 'linear-gradient(86deg, #527BF0 0.16%, #A791F5 100.16%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >|</span>
+            </div>
           </div>
         </div>
       )}
